@@ -1,0 +1,27 @@
+﻿@model TaskModel
+@{
+    ViewData["Title"] = "Criar Tarefa";
+}
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div class="container m-auto w-75">
+    <form asp-controller="Task" asp-action="Create" method="post">
+        <div class="form-group">
+        <label for="title">Titulo</label>
+        <input type="text" class="form-control" asp-for="Title" id="title" placeholder="Titulo de sua tarefa">
+        </div>
+        <div class="form-group">
+        <label for="description">Descição</label>
+        <textarea class="form-control" id="description" asp-for="Description" placeholder="Detalhes da tarefa ..."></textarea>
+        </div>
+        <div class="form-group">
+        <label for="date">Data</label>
+        <input type="date" class="form-control" id="date" asp-for="Date" placeholder="DD/MM/AAAA">
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Voltar</a>
+    </form>
+</div>
