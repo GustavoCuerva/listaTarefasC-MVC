@@ -23,6 +23,13 @@ namespace ListaTarefas.Controllers
             return View();
         }
 
+        public IActionResult Edit(int id)
+        {
+            TaskModel task = _taskRepositorio.RetornaId(id);
+            ViewBag.task = task;
+            return View(task);
+        }
+
         [HttpPost]
         public IActionResult Create(TaskModel task)
         {
@@ -30,10 +37,23 @@ namespace ListaTarefas.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public IActionResult Edit(TaskModel task)
+        {
+            _taskRepositorio.Editar(task);
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Deletar(int id)
+        {
+            _taskRepositorio.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿@model TaskModel
 @{
-    ViewData["Title"] = "Criar Tarefa";
+    ViewData["Title"] = "Editar Tarefa";
+    var task = ViewBag.task;
 }
 <div class="text-center">
     <h1 class="display-4">@ViewData["Title"]</h1>
 </div>
 
 <div class="container m-auto w-75">
-    <form asp-controller="Task" asp-action="Create" method="post">
+    <form asp-controller="Task" asp-action="Edit" method="post">
         <div class="form-group">
         <label for="title">Titulo</label>
         <input type="text" class="form-control" asp-for="Title" id="title" placeholder="Titulo de sua tarefa">
@@ -21,7 +22,10 @@
         <input type="date" class="form-control" id="date" asp-for="Date" placeholder="DD/MM/AAAA">
         </div>
         <br />
-        <button type="submit" class="btn btn-primary">Adicionar</button>
+        <button type="submit" class="btn btn-primary">Editar</button>
         <a class="btn btn-secondary" asp-controller="Task" asp-action="Index">Voltar</a>
     </form>
+
+    <p>@task.Title</p>
+    <p>@task.Description</p>
 </div>
